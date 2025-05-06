@@ -17,7 +17,14 @@ export class BookController {
 
   @Post('/new')
   async createBook(@Body() bookDto: CreateBookDto) {
-    return this.bookService.create(bookDto);
+    const user = {
+      id: 1,
+      name: 'mithu10',
+      email: 'mithu10@gmail.com',
+      password: '123456',
+    };
+
+    return this.bookService.create(bookDto, user);
   }
 
   @Get()

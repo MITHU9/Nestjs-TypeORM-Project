@@ -12,8 +12,11 @@ export class BookService {
     private readonly bookRepository: Repository<Book>,
   ) {}
 
-  async create(bookDto: CreateBookDto): Promise<Book> {
-    const book = this.bookRepository.create(bookDto);
+  async create(bookDto: CreateBookDto, user: any): Promise<Book> {
+    const book = this.bookRepository.create({
+      ...bookDto,
+      user,
+    });
     return await this.bookRepository.save(book);
   }
 
